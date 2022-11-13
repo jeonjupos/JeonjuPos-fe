@@ -1,0 +1,19 @@
+.pretendard-face(@v, @weight) {
+  @font-face {
+    font-family: 'Pretendard';
+    font-display: swap;
+    font-weight: @weight;
+    /* webpackIgnore: true */
+    src: local('Pretendard Black'), url('/font/Pretendard/woff2-subset/@{v}.woff2') format('woff2'), url('/font/Pretendard/woff-subset/@{v}.woff') format('woff');
+  }
+}
+
+.pretendard-face('Pretendard-ExtraBold.subset', 900);
+.pretendard-face('Pretendard-Bold.subset', 800);
+.pretendard-face('Pretendard-SemiBold.subset', 700);
+.pretendard-face('Pretendard-SemiBold.subset', 600);
+.pretendard-face('Pretendard-Medium.subset', 500);
+.pretendard-face('Pretendard-Regular.subset', 400);
+.pretendard-face('Pretendard-Light.subset', 300);
+.pretendard-face('Pretendard-ExtraLight.subset', 200);
+.pretendard-face('Pretendard-Thin.subset', 100);

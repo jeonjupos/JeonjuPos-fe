@@ -1,35 +1,35 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import VitePluginHtmlEnv from 'vite-plugin-html-env';
-import svgr from '@honkhonk/vite-plugin-svgr';
-import babel from 'vite-plugin-babel';
-import path from 'path';
+const envRecords = require('./env.cjs');
+import path, {join} from 'path';
+
+const getEnv = () => {
+  const env = {};
+  // eslint-disable-next-line guard-for-in
+  for (const key in envRecords) {
+    env[key] = envRecords[key][process.env.PHASE] ?? `${key}: NO ENV VALUE in ${process.env.PHASE}`;
+  }
+  return {...process.env, ...env};
+};
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    react(),
-    VitePluginHtmlEnv(),
-    // svgr({
-    //   svgrOptions: {
-    //     icon: true,
-    //     dimensions: false,
-    //     // etc...
-    //   },
-    // }),
-    babel({
-      babelConfig:{
-        // plugin:[
-        //   ["babel-plugin-less-for-styled-components", { "globalImports": ["src/styles/proj"] }],
-        //   ["babel-plugin-styled-components", {
-        //     "ssr": false,
-        //     "displayName": true,
-        //     "pure": true
-        //   }]
-        // ]
-      }
+    react({
+      fastRefresh: true,
+      babel: {
+        plugins: [
+          ['babel-plugin-less-for-styled-components', { globalImports: [join(__dirname, 'src/styles/proj')] }],
+        ],
+      },
     }),
+    VitePluginHtmlEnv(),
+
   ],
+  define: {
+    'process.env': getEnv(),
+  },
   build: {
     minify: false,
   },

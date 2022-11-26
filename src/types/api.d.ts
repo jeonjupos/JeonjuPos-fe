@@ -1,6 +1,6 @@
 import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { ObjectLiteral } from '@/types/utilType';
-import { ToastOption } from '@/provider/toast/hooks/useToast';
+import { ToastOption } from '@/providers/toast/type/toast';
 import CookieService from '@/services/CookieService';
 
 export type ApiErrorCode = 'DEFAULT' | string;

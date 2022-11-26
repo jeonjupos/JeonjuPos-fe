@@ -1,22 +1,16 @@
 import CookieService from '@/services/CookieService';
-import TournamentApi from '@/api/generated/TournamentApi';
-import UserApi from '@/api/generated/UserApi';
 import ApiConnection from '@/api/ApiConnection';
 import { Api } from '@/types/api';
 import { ApiService } from '@/types/services';
-import LeagueService from '@/services/LeagueService';
-import PartyService from '@/services/PartyService';
-import AuthService from '@/services/AuthService';
-import { isClient } from '@/constants/common';
 import { useDispatch } from 'react-redux';
-import AuthApi from '@/api/generated/AuthApi';
-import AwsService from '@/services/AwsService';
 import CommonApiHandler from '@/api/handlers/CommonApiHandler';
-import useToast from '@/provider/toast/hooks/useToast';
-import useModal from '@/provider/modal/hooks/useModal';
-import { OpenToastType } from '@/provider/toast/type/toast';
-import { OpenModalType } from '@/provider/modal/type/modal';
+import useToast from '@/providers/toast/hooks/useToast';
+import useModal from '@/providers/modal/hooks/useModal';
+import { OpenToastType } from '@/providers/toast/type/toast';
+import { OpenModalType } from '@/providers/modal/type/modal';
 import { ApiHandlerType } from '@/api/handlers/types/ApiHandler';
+import SpaceApi from '@/api/generated/SpaceApi';
+import TableService from '@/services/TableService';
 
 let api: ApiService;
 
@@ -31,12 +25,12 @@ export const getApi = ({ toast, modal, cookie }: { toast?: OpenToastType, modal?
     return api;
   };
 
-  const API_URL = process.env.API_URL as string;
+  const API_URL = process.env.API_URI as string;
 
   api = {
-    tournamentApi: makeApi(TournamentApi, `${API_URL}/tournament`, commonHandler),
-    userApi: makeApi(UserApi, `${API_URL}/user`, commonHandler),
-    authApi: makeApi(AuthApi, `${API_URL}`, commonHandler),
+    spaceApi: makeApi(SpaceApi, `${API_URL}/space`, commonHandler),
+    // userApi: makeApi(UserApi, `${API_URL}/user`, commonHandler),
+    // authApi: makeApi(AuthApi, `${API_URL}`, commonHandler),
   };
 
   return api;
@@ -44,9 +38,9 @@ export const getApi = ({ toast, modal, cookie }: { toast?: OpenToastType, modal?
 
 const useService = () => {
   const cookie = new CookieService();
-  const { toast = undefined } = isClient ? useToast() : {};
-  const { modal = undefined } = isClient ? useModal() : {};
-  const dispatch = isClient ? useDispatch() : null;
+  const { toast } = useToast();
+  const { modal } = useModal();
+  const dispatch = useDispatch();
   const api = getApi({ toast, modal, cookie });
 
   const serviceParams = {
@@ -57,10 +51,7 @@ const useService = () => {
 
   const services = {
     cookie,
-    aws: new AwsService(serviceParams),
-    auth: new AuthService(serviceParams),
-    league: new LeagueService(serviceParams),
-    party: new PartyService(serviceParams),
+    table: new TableService(serviceParams),
     ...api,
   };
 

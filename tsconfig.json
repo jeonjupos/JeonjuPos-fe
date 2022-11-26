@@ -5,7 +5,7 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "types": [ "@honkhonk/vite-plugin-svgr/client" ],
+    "types": [ "node", "@honkhonk/vite-plugin-svgr/client" ],
     "typeRoots": ["./node_modules/@types", "./src/types"],
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],

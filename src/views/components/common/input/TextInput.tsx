@@ -167,17 +167,6 @@ export const TextInput = styled(TextInputComp)`
   input { cursor: not-allowed;  }
   }
   &.error{ .-a(@redNatural[@500]) !important; }
-  
-  @media(@wg-mobile){
-    .inp-cont{
-      .search-cont{ .rt(20,50%);
-        ~ input { .pr(50); }
-        &.reset{
-          ~ input { .pr(50); }
-        }
-      }
-    }
-  }
 `;
 
 export default TextInput;

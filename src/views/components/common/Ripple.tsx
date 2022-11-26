@@ -11,17 +11,17 @@ interface PropsType {
 }
 
 export const DEFAULT_RIPPLE_OPTION = {
-  color: 'rgba(255,255,255,0.3)',
+  color: 'rgb(255,255,255)',
   duration: 200,
   disabled: false,
 };
 
 const Ripple = ({
-  color = DEFAULT_RIPPLE_OPTION.color,
-  duration = DEFAULT_RIPPLE_OPTION.duration,
-  disabled = DEFAULT_RIPPLE_OPTION.disabled,
-  children,
-}: PropsType & RippleOption) => {
+                  color = DEFAULT_RIPPLE_OPTION.color,
+                  duration = DEFAULT_RIPPLE_OPTION.duration,
+                  disabled = DEFAULT_RIPPLE_OPTION.disabled,
+                  children,
+                }: PropsType & RippleOption) => {
   const setRippleColor = useCallback((rippleColor: string) => {
     if (rippleColor.includes('#')) {
       /* 맨 앞의 "#" 기호를 삭제하기. */
@@ -36,14 +36,18 @@ const Ripple = ({
         arr[x] = String(parseInt(str, 16));
       });
 
-      rippleColor = `rgba(${rgb.join(', ')},0.3)`;
+      rippleColor = `rgb(${rgb.join(', ')})`;
     }
 
     return rippleColor;
   }, []);
 
   const rippleHandler = useCallback((event: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    const el = event.target as HTMLElement;
+    let el = event.target as HTMLElement;
+
+    while (!el.classList.contains('ripple-el')) {
+      if (el.parentNode) el = el.parentNode as HTMLElement;
+    }
 
     if (!el || disabled) return;
 
@@ -82,10 +86,12 @@ const Ripple = ({
   }, [color, disabled, duration, setRippleColor]);
 
   const rippleWrapChildren = useMemo(() => {
-    return [children].map(child => ({
-      ...child,
-      props: { ...child.props, onMouseDown: rippleHandler },
-    }));
+    return [children].map(child => {
+      return ({
+        ...child,
+        props: { ...child.props, className: `${child.props.className} ripple-el`, onMouseDown: rippleHandler },
+      });
+    });
   }, [children, rippleHandler]);
 
   return (

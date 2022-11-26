@@ -36,15 +36,6 @@ const TuiStyle = styled(TuiStyleComp)`
     }
   }
   .toastui-editor-contents ul, .toastui-editor-contents menu, .toastui-editor-contents ol, .toastui-editor-contents dir { .c(@grayScale[@55]); }
-  
-  @media(@wg-tablet){
-    .toastui-editor-contents { .fs(16, 21);
-      * { .fs(16, 21); }
-      ol, ul { 
-        >li { .mb(12); }
-      }
-    }
-  }
 `;
 
 export default TuiStyle;

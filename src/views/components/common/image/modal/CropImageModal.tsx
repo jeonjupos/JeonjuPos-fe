@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Cropper, { Area, Point } from 'react-easy-crop';
 import { ModalStyle } from '@components/common/modal/ModalTemplate';
 import { ModalComponentPropsType } from '@/provider/modal/type/modal';
-import WgButton, { GrayBorderBtn } from '@components/common/button/WgButton';
+import WgButton, { GrayBorderBtn } from '@components/common/button/JwButton';
 import SvgIcoClose from '@/public/imgs/icon/ico-close.svg';
 import SvgIcoRefresh from '@/public/imgs/icon/ico-refresh.svg';
 

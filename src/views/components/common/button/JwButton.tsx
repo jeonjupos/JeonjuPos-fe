@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Ripple, { RippleOption } from '@components/common/Ripple';
-import { Skeleton } from '@components/common/Skeleton';
+import Ripple, { RippleOption } from '@/views/components/common/Ripple';
+import { Skeleton } from '@/views/components/common/Skeleton';
 
 interface PropsType {
   className?: string;
@@ -24,7 +24,7 @@ const WgButtonComp = ({ className, type, color, children, ripple, disabled, onCl
 };
 
 // noinspection LessResolvedByNameOnly
-const WgButton = styled(WgButtonComp)`
+const JwButton = styled(WgButtonComp)`
   .bold; .-a; .pointer; 
   &:disabled { .o(0.5); cursor: not-allowed; }
   * { pointer-events: none; }
@@ -35,23 +35,23 @@ const WgButton = styled(WgButtonComp)`
 `;
 
 // noinspection LessResolvedByNameOnly
-export const WhiteContainBtn = styled(WgButton)`
+export const WhiteContainBtn = styled(JwButton)`
   .c(#000); .bgc(#FFF); .-a(#FFF); .br(50);
 `;
 
 // noinspection LessResolvedByNameOnly
-export const WhiteBorderBtn = styled(WgButton)`
+export const WhiteBorderBtn = styled(JwButton)`
   .c(#FFF); .bgc(transparent); .-a(#FFF); .br(50);
 `;
 
 // noinspection LessResolvedByNameOnly
-export const BlueContainBtn = styled(WgButton)`
+export const BlueContainBtn = styled(JwButton)`
   .c(#FFF); .bgc(#4465DC); .-a(#4465DC); .br(50);
 `;
 
 // noinspection LessResolvedByNameOnly
-export const GrayBorderBtn = styled(WgButton)`
+export const GrayBorderBtn = styled(JwButton)`
   .c(@indigoNatural[@150]); .bgc(transparent); .-a(@indigoNatural[@80]); .br(inherit);
 `;
 
-export default WgButton;
+export default JwButton;

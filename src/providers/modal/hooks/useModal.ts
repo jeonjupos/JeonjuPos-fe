@@ -1,11 +1,11 @@
 import { CheckModalType, CloseModalType, ModalType, OpenModalType, ResolveModalType } from '../type/modal';
 import { useContext, useEffect } from 'react';
 import { ModalContext } from '../ModalProvider';
-import { useRouter } from 'next/router';
+import {useLocation} from 'react-router-dom';
 
 const useModal = () => {
-  const router = useRouter();
-  const { pathname } = router;
+  const location = useLocation();
+  const { pathname } = location;
   const { modals, setModals, scrollRelease, scrollFreeze } = useContext(ModalContext);
 
   const checkModal : CheckModalType = (
@@ -46,15 +46,7 @@ const useModal = () => {
 
       modal.id = (modalList[modalList.length - 1]?.id ?? -1) + 1;
 
-      if (Array.isArray(router.query.modal)) {
-
-      }
-
-      const { pathname, search } = window.location;
-      const query = search ? `${search}&modal=${modal.id}` : `?modal=${modal.id}`;
-      router.push(`${pathname}${query}`, undefined, { shallow: true }).then(() => {
-        setModals([...modalList, modal]);
-      });
+      setModals([...modalList, modal]);
     });
   };
 

@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
 import styled from 'styled-components';
-import { ToastType } from '@/provider/toast/type/toast';
+import { ToastType } from '@/providers/toast/type/toast';
 
 interface PropsType {
   className?: string;
@@ -53,30 +53,6 @@ const ToastDefaultTemplate = styled(ToastDefaultTemplateComp)`
       transition: opacity ${props => `${props.toast.duration}ms`},
       transform ${props => `${props.toast.duration}ms`};
     }
-  
-
-  @media (@wg-tablet) {
-
-      .wf; .p(20); .br(8);
-        &.warning { .c(white); }
-
-        &.success { .c(white); }
-      
-    
-
-    &.toast-enter { .o(1); .t-y(20);
-      transition: opacity ${props => props.toast.duration}ms,
-      transform ${props => props.toast.duration}ms;
-    }
-    &.toast-leave { .o(0); .t-y(0);
-      transition: opacity ${props => props.toast.duration}ms,
-      transform ${props => props.toast.duration}ms;
-    }
-  }
-
-  @media (@wg-mobile) {
-
-  }
 `;
 
 export default ToastDefaultTemplate;

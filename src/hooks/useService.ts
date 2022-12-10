@@ -11,6 +11,10 @@ import { OpenModalType } from '@/providers/modal/type/modal';
 import { ApiHandlerType } from '@/api/handlers/types/ApiHandler';
 import SpaceApi from '@/api/generated/SpaceApi';
 import TableService from '@/services/TableService';
+import MenuApi from '@/api/generated/MenuApi';
+import MenuService from '@/services/MenuService';
+import OrderApi from '@/api/generated/OrderApi';
+import OrderService from '@/services/OrderService';
 
 let api: ApiService;
 
@@ -29,6 +33,8 @@ export const getApi = ({ toast, modal, cookie }: { toast?: OpenToastType, modal?
 
   api = {
     spaceApi: makeApi(SpaceApi, `${API_URL}/space`, commonHandler),
+    menuApi: makeApi(MenuApi, `${API_URL}/menu`, commonHandler),
+    orderApi: makeApi(OrderApi, `${API_URL}/order`, commonHandler),
     // userApi: makeApi(UserApi, `${API_URL}/user`, commonHandler),
     // authApi: makeApi(AuthApi, `${API_URL}`, commonHandler),
   };
@@ -52,6 +58,8 @@ const useService = () => {
   const services = {
     cookie,
     table: new TableService(serviceParams),
+    menu: new MenuService(serviceParams),
+    order: new OrderService(serviceParams),
     ...api,
   };
 

@@ -1,15 +1,11 @@
 import {AxiosRequestConfig} from 'axios';
 import ApiConnection from '../ApiConnection';
-
-export interface ApiResponseType {
-  res_code: string;
-  message: string;
-}
+import {ApiResponseType} from '@/types/api';
 
 export interface TableInfo {
   spacepkey: number;
   spacenum: number;
-  cookingyn: 'Y' | 'N';
+  cookingyn: boolean;
   amount: number;
   orderlist: TableOrderInfo[]
 }

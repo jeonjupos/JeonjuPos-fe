@@ -115,6 +115,7 @@
 .wh(@w, @h) { .w(@w); .h(@h); }
 .wh() {.w; .h;}
 .calc-w(@w, @v) { .sv(@v); width: calc(@w - @_sv);}
+.calc-h(@h, @v) { .sv(@v); height: calc(@h - @_sv);}
 
 .t(@v) { .sv(@v); top: @_sv; }
 .r(@v) { .sv(@v); right: @_sv; }

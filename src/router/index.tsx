@@ -5,11 +5,13 @@ import {Navigate, useRoutes} from 'react-router-dom';
 import NotFound from '@/views/pages/NotFound';
 import useService from '@/hooks/useService';
 import common from '@/router/common';
+import order from '@/router/order';
 import {RouterContext} from '@/router/provider';
 
 
 const routeList: Route[] = [
-  ...common
+  ...common,
+  ...order,
 ];
 
 export default function RouterView() {

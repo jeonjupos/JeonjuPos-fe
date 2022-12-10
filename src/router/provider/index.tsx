@@ -5,11 +5,12 @@ interface PropsType {
   children: React.ReactNode;
 }
 
-const initialValue: {routeInfo: Route, setRouteInfo: (routeInfo: Route) => void} = {
+const initialValue: { routeInfo: Route, setRouteInfo: (routeInfo: Route) => void } = {
   routeInfo: {
-    path: '/',
+    path: '/'
   },
-  setRouteInfo: (routeInfo) => {}
+  setRouteInfo: (routeInfo) => {
+  }
 };
 
 export const RouterContext = createContext(initialValue);
@@ -23,11 +24,11 @@ const RouteProvider = ({children}: PropsType) => {
     const basicMeta = {
       headerHide: false,
       footerHide: false,
-      isAuth: false,
+      isAuth: false
     };
 
     if (routeInfo.meta) {
-      if(!info.current.meta) info.current.meta = {};
+      if (!info.current.meta) info.current.meta = {};
       info.current.meta.headerHide = Boolean(routeInfo.meta.headerHide);
       info.current.meta.footerHide = Boolean(routeInfo.meta.footerHide);
       info.current.meta.isAuth = Boolean(routeInfo.meta.isAuth);
@@ -35,14 +36,14 @@ const RouteProvider = ({children}: PropsType) => {
       info.current.meta = basicMeta;
     }
 
-    info.current = { ...routeInfo, meta: info.current.meta };
-  }
+    info.current = {...routeInfo, meta: info.current.meta};
+  };
 
   return (
     <RouterContext.Provider value={{routeInfo: info.current, setRouteInfo}}>
       {children}
-  </RouterContext.Provider>
-  )
-}
+    </RouterContext.Provider>
+  );
+};
 
 export default RouteProvider;

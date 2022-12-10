@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from 'react';
 import styled from 'styled-components';
-import { SelectData } from './WgSelect';
+import { SelectData } from './JwSelect';
 
 interface PropsType {
   className?: string;
@@ -11,7 +11,7 @@ interface PropsType {
   handleChange?: (selectData: SelectData) => void;
 }
 
-const WgOptionComp = ({ className, value, children, selectedValue = '', searchText = '', handleChange }: PropsType) => {
+const JwOptionComp = ({ className, value, children, selectedValue = '', searchText = '', handleChange }: PropsType) => {
   const isMatch = useMemo(() => typeof children === 'string' && children.includes(searchText), [children, searchText]);
   const handleSelectValue = useCallback(() => {
     handleChange && handleChange({ label: children, value });
@@ -25,7 +25,7 @@ const WgOptionComp = ({ className, value, children, selectedValue = '', searchTe
 };
 
 // noinspection LessResolvedByNameOnly
-const WgOption = styled(WgOptionComp)`
+const JwOption = styled(JwOptionComp)`
   .p(10,12); .fs(14); .pointer;
 
   &.active{ .c(@indigoNatural[@300]); .bold; .bgc(white); }
@@ -36,4 +36,4 @@ const WgOption = styled(WgOptionComp)`
   }
 `;
 
-export default WgOption;
+export default JwOption;

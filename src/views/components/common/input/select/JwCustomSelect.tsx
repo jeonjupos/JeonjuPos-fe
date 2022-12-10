@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import styled from 'styled-components';
 import useClickOutSide from '@/hooks/useClickOutSide';
-import SvgIcoArrowDown from '@/public/imgs/icon/ico-arrow-down.svg?component';
+import {ReactComponent as SvgIcoArrowDown} from '@/assets/imgs/icon/ico-arrow-down.svg';
 
 interface PropsType {
   className?: string;

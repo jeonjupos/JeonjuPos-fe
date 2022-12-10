@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import CircleLoading from '@components/common/loading/CircleLoading';
+import CircleLoading from '@/views/components/common/loading/CircleLoading';
 import { isMobile } from 'react-device-detect';
 
 interface PropsType {

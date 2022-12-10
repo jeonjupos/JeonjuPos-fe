@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ToastType } from '@/provider/toast/type/toast';
-import SvgIcoWarning from '@/public/imgs/icon/ico-warning.svg';
-import SvgIcoSuccess from '@/public/imgs/icon/ico-success.svg';
+import { ToastType } from '@/providers/toast/type/toast';
+import {ReactComponent as SvgIcoWarning} from '@imgs/icon/ico-warning.svg';
+import {ReactComponent as SvgIcoSuccess} from '@imgs/icon/ico-success.svg';
 
 interface PropsType {
   className?: string;

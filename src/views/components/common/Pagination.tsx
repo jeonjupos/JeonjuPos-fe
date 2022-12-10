@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from 'react';
 import styled from 'styled-components';
-import SvgIcoSmArrow from '@/public/imgs/icon/ico-sm-arrow.svg';
+import SvgIcoSmArrow from '@imgs/icon/ico-sm-arrow.svg';
 import { makeClass } from '@/utils/forReactUtils';
 
 interface PropsType {

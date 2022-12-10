@@ -25,8 +25,9 @@ const WgButtonComp = ({ className, type, color, children, ripple, disabled, onCl
 
 // noinspection LessResolvedByNameOnly
 const JwButton = styled(WgButtonComp)`
-  .bold; .-a; .pointer; 
+  .bold; .-a; .pointer; .t-s(1); transform-origin: center;
   &:disabled { .o(0.5); cursor: not-allowed; }
+  &:active:not(:disabled){ .t-s(0.98); }
   * { pointer-events: none; }
   
   &.indigoVivid-500{ .bgc(@indigoVivid[@500]); .-a(@indigoVivid[@500]); .c(#fff); }

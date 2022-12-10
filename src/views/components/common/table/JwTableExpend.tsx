@@ -6,7 +6,7 @@ interface PropsType {
   children: ReactNode;
 }
 
-const WgTableExpendComp = ({ className, children }: PropsType) => {
+const JwTableExpendComp = ({ className, children }: PropsType) => {
   return (
     <div className={className}>
       {children}
@@ -15,8 +15,8 @@ const WgTableExpendComp = ({ className, children }: PropsType) => {
 };
 
 // noinspection LessResolvedByNameOnly
-const WgTableExpend = styled(WgTableExpendComp)`
+const JwTableExpend = styled(JwTableExpendComp)`
     // style
 `;
 
-export default WgTableExpend;
+export default JwTableExpend;

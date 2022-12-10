@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useRef, forwardRef, MutableRefObject, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
-import BasicResetClose from '@/public/imgs/icon/ico-circle-cancel.svg';
-import SvgIcoSearch from '@/public/imgs/icon/ico-search.svg';
+import {ReactComponent as BasicResetClose} from '@imgs/icon/ico-circle-cancel.svg';
+import {ReactComponent as SvgIcoSearch} from '@imgs/icon/ico-search.svg';
 import { makeClass, propsDivider } from '@/utils/forReactUtils';
 
 interface PropsType extends React.InputHTMLAttributes<HTMLInputElement> {

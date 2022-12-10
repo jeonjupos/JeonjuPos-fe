@@ -1,9 +1,9 @@
 import React, { forwardRef, MutableRefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import styled from 'styled-components';
-import Portal from '@components/common/Portal';
-import useClickOutSide from '@/hooks/useClickOutStide';
-import DropBoxWrap from '@components/common/input/select/DropBoxWrap';
-import SvgIcoArrowDown from '@/public/imgs/icon/ico-arrow-down.svg';
+import Portal from '@/views/components/common/Portal';
+import useClickOutSide from '@/hooks/useClickOutSide';
+import DropBoxWrap from '@/views/components/common/input/select/DropBoxWrap';
+import {ReactComponent as SvgIcoArrowDown} from '@imgs/icon/ico-arrow-down.svg';
 
 export type SelectData = { label: React.ReactNode | string; value: string | number | null };
 
@@ -22,7 +22,7 @@ interface PropsType extends React.InputHTMLAttributes<HTMLInputElement> {
 
 const DEFAULT_VALUE = { label: undefined, value: '' };
 
-const WgSelectComp = forwardRef<HTMLInputElement, PropsType>((props, ref: React.ForwardedRef<HTMLInputElement | null>) => {
+const JwSelectComp = forwardRef<HTMLInputElement, PropsType>((props, ref: React.ForwardedRef<HTMLInputElement | null>) => {
   const { className, children, label, value = '', name = 'select', dropstyle, disabled = false, edit = false, custom = false, placeholder, change } = props;
   const inputProps = { ...props, children: undefined, className: undefined, change: undefined, enter: undefined, edit: undefined, custom: undefined, dropstyle: undefined };
 
@@ -78,7 +78,7 @@ const WgSelectComp = forwardRef<HTMLInputElement, PropsType>((props, ref: React.
   const optionList = useMemo(() => {
     if (custom) return [];
     const childList = Array.isArray(children) ? children : [children];
-    return childList.filter(child => child.type.displayName === 'WgOption').map(child => ({
+    return childList.filter(child => child.type.displayName === 'JwOption').map(child => ({
       ...child,
       props: { ...child.props, selectedValue: selected.value, searchText: text, handleChange },
     }));
@@ -141,7 +141,7 @@ const WgSelectComp = forwardRef<HTMLInputElement, PropsType>((props, ref: React.
 });
 
 // noinspection LessResolvedByNameOnly
-const WgSelect = styled(WgSelectComp)`
+const JwSelect = styled(JwSelectComp)`
   .ib; .vam; .wh(auto, 50); .bgc(#FFF); .-a(@grayScale[@e6]); .br(12); .crop; transition: border 0.1s;
   &.disabled{ .o(0.5);
     > span { cursor: not-allowed; }
@@ -177,9 +177,9 @@ const WgSelect = styled(WgSelectComp)`
 `;
 
 // noinspection LessResolvedByNameOnly
-export const SearchSelect = styled(WgSelect)`
+export const SearchSelect = styled(JwSelect)`
   label{ .px(20); .pl(34); .no-repeat('@{icon}/ico-gray-search.svg'); .bg-yc; .bg-x(16); }
   .ico-arrow-down{ .hide; }
 `;
 
-export default WgSelect;
+export default JwSelect;

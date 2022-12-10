@@ -14,7 +14,7 @@ interface PropsType {
   beforeExpendOpen?: () => void;
 }
 
-const WgTableColumnComp = ({ className, label, children, filedId, colSpan, expendOpen, expendControl = false, expendOpenToggle, beforeExpendOpen }: PropsType) => {
+const JwTableColumnComp = ({ className, label, children, filedId, colSpan, expendOpen, expendControl = false, expendOpenToggle, beforeExpendOpen }: PropsType) => {
   const handleExpendToggle = async () => {
     if (!expendControl) return;
     try {
@@ -36,8 +36,8 @@ const WgTableColumnComp = ({ className, label, children, filedId, colSpan, expen
 };
 
 // noinspection LessResolvedByNameOnly
-const WgTableColumn = styled(WgTableColumnComp)`
+const JwTableColumn = styled(JwTableColumnComp)`
     // style
 `;
 
-export default WgTableColumn;
+export default JwTableColumn;

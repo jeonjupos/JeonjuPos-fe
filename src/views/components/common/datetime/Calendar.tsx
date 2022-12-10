@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import styled from 'styled-components';
 import dayjs, { ManipulateType } from 'dayjs';
-import SvgIconCalendarArrow from '@/public/imgs/icon/ico-calendar-arrow.svg';
+import SvgIconCalendarArrow from '@imgs/icon/ico-calendar-arrow.svg';
 import { makeClass } from '@/utils/forReactUtils';
 
 type WeekDateType = { dto: Date; t: number; m: any; ymd: number; ext: any; out: any; };

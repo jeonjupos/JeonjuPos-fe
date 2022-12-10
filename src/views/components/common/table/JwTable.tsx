@@ -1,9 +1,9 @@
 import React, { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
-import WgTableRow from '@components/common/table/WgTableRow';
-import CheckBox from '@components/common/input/CheckBox';
+import WgTableRow from '@/views/components/common/table/JwTableRow';
+import CheckBox from '@/views/components/common/input/CheckBox';
 import _uniqueId from 'lodash/uniqueId';
-import CircleLoading from '@components/common/loading/CircleLoading';
+import CircleLoading from '@/views/components/common/loading/CircleLoading';
 
 type TableData = {
   id: string | number;
@@ -30,7 +30,7 @@ type PropsType<T extends TableData[]> = {
 };
 
 // noinspection LessResolvedByNameOnly
-const WgTableContainer = styled.table<{ expendClassName?: string }>`
+const JwTableContainer = styled.table<{ expendClassName?: string }>`
   table-layout: fixed; .wf; border-collapse: separate;
 
 
@@ -67,7 +67,7 @@ const WgTableContainer = styled.table<{ expendClassName?: string }>`
 
 const uid = _uniqueId();
 
-function WgTable<T extends TableData[]>({ className, tableData, children, noDataMsg, pageNum, expendClassName = 'expend-tr', checkIds, loading = false, onCheckChange }: PropsType<T>) {
+function JwTable<T extends TableData[]>({ className, tableData, children, noDataMsg, pageNum, expendClassName = 'expend-tr', checkIds, loading = false, onCheckChange }: PropsType<T>) {
   const [allCheck, setAllCheck] = useState(false);
   const [thData, setThData] = useState<ThDataType[]>([]);
 
@@ -75,6 +75,7 @@ function WgTable<T extends TableData[]>({ className, tableData, children, noData
   const useCheckbox = useMemo(() => Boolean(checkIds), [checkIds]);
 
   const updateThData = useCallback((newThData: ThDataType[]) => {
+    console.log(newThData);
     setThData(newThData);
   }, []);
 
@@ -101,7 +102,7 @@ function WgTable<T extends TableData[]>({ className, tableData, children, noData
   }, [pageNum]);
 
   return (
-    <WgTableContainer className={className} expendClassName={expendClassName}>
+    <JwTableContainer className={className} expendClassName={expendClassName}>
       <thead>
         <tr>
           {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
@@ -132,8 +133,8 @@ function WgTable<T extends TableData[]>({ className, tableData, children, noData
           </WgTableRow>
         )}
       </tbody>
-    </WgTableContainer>
+    </JwTableContainer>
   );
 }
 
-export default WgTable;
+export default JwTable;

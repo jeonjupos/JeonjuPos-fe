@@ -1,10 +1,9 @@
 import React, { ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { ThDataType } from '@components/common/table/WgTable';
-import CheckBox from '@components/common/input/CheckBox';
+import { ThDataType } from '@/views/components/common/table/JwTable';
+import CheckBox from '@/views/components/common/input/CheckBox';
 import { makeClass } from '@/utils/forReactUtils';
-import { isClient } from '@/constants/common';
-import CircleLoading from '@components/common/loading/CircleLoading';
+import CircleLoading from '@/views/components/common/loading/CircleLoading';
 
 interface PropsType {
   expendClassName: string;
@@ -19,7 +18,7 @@ interface PropsType {
   updateThData?: (thData: ThDataType[]) => void;
 }
 
-const WgTableRowComp = ({ expendClassName, tableUid, noDataMsg, children, checkId, checkIdList, changeCheckId, useCheckbox = false, loading = false, updateThData }: PropsType) => {
+const JwTableRowComp = ({ expendClassName, tableUid, noDataMsg, children, checkId, checkIdList, changeCheckId, useCheckbox = false, loading = false, updateThData }: PropsType) => {
   const expendTdEl = useRef<HTMLTableDataCellElement | null>(null);
   const [expendOpen, setExpendOpen] = useState(false);
 
@@ -41,7 +40,8 @@ const WgTableRowComp = ({ expendClassName, tableUid, noDataMsg, children, checkI
     let childList = Array.isArray(children) ? children : [children];
     if (!childList[0]?.props) return [];
     childList = Array.isArray(childList[0].props.children) ? childList[0].props.children : [childList[0].props.children];
-    return childList.filter(child => child.type.displayName === 'WgTableColumn').map(child => ({
+    console.log(childList);
+    return childList.filter(child => child.type.render.displayName.includes('JwTableColumn')).map(child => ({
       name: child.props.label as string,
       filedId: child.props.filedId as string,
     }));
@@ -51,7 +51,7 @@ const WgTableRowComp = ({ expendClassName, tableUid, noDataMsg, children, checkI
     let childList = Array.isArray(children) ? children : [children];
     if (!childList[0]?.props) return [];
     childList = Array.isArray(childList[0].props.children) ? childList[0].props.children : [childList[0].props.children];
-    return childList.filter(child => child.type.displayName === 'WgTableColumn').map(child => ({
+    return childList.filter(child => child.type.render.displayName.includes('JwTableColumn')).map(child => ({
       ...child,
       props: { ...child.props, expendOpenToggle, expendOpen },
     }));
@@ -77,13 +77,13 @@ const WgTableRowComp = ({ expendClassName, tableUid, noDataMsg, children, checkI
       expendMaxHeightSet(false);
     };
 
-    if (isClient) {
+
       window.removeEventListener('resize', resizeChangeExpendHeight);
       window.addEventListener('resize', resizeChangeExpendHeight);
-    }
+
 
     return () => {
-      isClient && window.removeEventListener('resize', resizeChangeExpendHeight);
+      window.removeEventListener('resize', resizeChangeExpendHeight);
     };
   }, []);
 
@@ -101,19 +101,19 @@ const WgTableRowComp = ({ expendClassName, tableUid, noDataMsg, children, checkI
         ) : columnList}
       </tr>
       {Boolean(expendChild) && (
-      <tr>
-        <td ref={expendTdEl} className={makeClass([expendClassName, { open: expendOpen }])} colSpan={colSpan}>
-          {expendChild}
-        </td>
-      </tr>
+        <tr>
+          <td ref={expendTdEl} className={makeClass([expendClassName, { open: expendOpen }])} colSpan={colSpan}>
+            {expendChild}
+          </td>
+        </tr>
       )}
     </>
   );
 };
 
 // noinspection LessResolvedByNameOnly
-const WgTableRow = styled(WgTableRowComp)`
-  
+const JwTableRow = styled(JwTableRowComp)`
+
 `;
 
-export default WgTableRow;
+export default JwTableRow;

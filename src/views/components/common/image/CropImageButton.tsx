@@ -1,8 +1,8 @@
 import React, { useCallback, useRef } from 'react';
 import styled from 'styled-components';
 import { imageFileUpload } from '@/utils/fileUtils';
-import useModal from '@/provider/modal/hooks/useModal';
-import CropImageModal from '@components/common/image/modal/CropImageModal';
+import useModal from '@/providers/modal/hooks/useModal';
+import CropImageModal from '@/views/components/common/image/modal/CropImageModal';
 
 interface PropsType {
   className?: string;

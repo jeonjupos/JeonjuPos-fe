@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import _uniqueId from 'lodash/uniqueId';
-import Ripple, { RippleOption } from '@components/common/Ripple';
-import SvgIcoCheck from '@/public/imgs/icon/ico-check.svg';
+import Ripple, { RippleOption } from '@/views/components/common/Ripple';
+import SvgIcoCheck from '@imgs/icon/ico-check.svg';
 import { propsDivider } from '@/utils/forReactUtils';
 
 interface PropsType extends React.InputHTMLAttributes<HTMLInputElement> {

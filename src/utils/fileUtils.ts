@@ -43,7 +43,7 @@ export const imageFileUpload = async (e : React.ChangeEvent<HTMLInputElement>) =
 
 export const multiImageUpload = (e : React.ChangeEvent<HTMLInputElement>) => {
   const result : { file: File, dataUrl: string }[] = [];
-  const files : File[] = _get(e, 'target.files', []);
+  const files = _get(e, 'target.files', []);
 
   Array.from(files).forEach(async file => {
     if (file) {

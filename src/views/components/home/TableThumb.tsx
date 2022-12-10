@@ -1,48 +1,49 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import styled from 'styled-components';
+import {TableInfo} from '@/api/generated/SpaceApi';
+import {commaDecimal} from '@/utils/numberUtils';
+import {useNavigate} from 'react-router-dom';
 
 interface PropsType {
     className?: string;
+    info: TableInfo;
 }
 
-const TableThumbComp = ({className}: PropsType) => {
+const TableThumbComp = ({className, info}: PropsType) => {
+  const navigate = useNavigate()
+  const orderList = useMemo(() => info.orderlist.length === 0 ? null : info.orderlist,[info])
+
+  const moveOrderPage = () => {
+    navigate(`/order/${info.spacepkey}`);
+  }
+
   return (
-    <div className={className}>
+    <div className={className} onClick={moveOrderPage}>
       <div className="info">
-        <div className="table-no">1번 테이블</div>
-        <ul className="menu-list">
-          <li>
-            <div className="name-with-cnt">
-              <span className="menu-name">떡볶이</span>
-              <span className="menu-cnt">3</span>
-            </div>
-            <div className="price">
-              3,000
-            </div>
-          </li>
-          <li>
-            <div className="name-with-cnt">
-              <span className="menu-name">소주</span>
-              <span className="menu-cnt">1</span>
-            </div>
-            <div className="price">
-              4,000
-            </div>
-          </li>
-          <li>
-            <div className="name-with-cnt">
-              <span className="menu-name">맥주</span>
-              <span className="menu-cnt">1</span>
-            </div>
-            <div className="price">
-              4,000
-            </div>
-          </li>
-        </ul>
+        <div className="table-no">{info.spacenum}번 테이블</div>
+        {orderList ? (
+          <ul className="menu-list">
+            {orderList.map((order, index) => (
+              <li key={`${info.spacenum}-${order.menuname}-${index}`}>
+                <div className="name-with-cnt">
+                  <span className="menu-name">{order.menuname}</span>
+                  <span className="menu-cnt">{order.menucount}</span>
+                </div>
+                <div className="price">
+                  {commaDecimal(order.saleprice)}
+                </div>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div className="empty-list">
+            <span>비어 있음</span>
+          </div>
+        )}
       </div>
       <div className="total">
         <span className="label">금액</span>
-        <span className="value">3000</span>
+        <span className="value">{commaDecimal(info.amount)}</span>
       </div>
     </div>
   );
@@ -51,9 +52,9 @@ const TableThumbComp = ({className}: PropsType) => {
 // noinspection LessResolvedByNameOnly
 const TableThumb = styled(TableThumbComp)`
   .flex; .flex-column; .space-between; .hf; .p(12); .bgc(cadetblue); .br(6);
-  .info {
-    .table-no { .mb(10); .fs(14); .bold; }
-    .menu-list { .hf; .p(10); .bgc(ghostwhite);
+  .info { .flex; .flex-column; .hf;
+    .table-no { .mb(10); .fs(14); .bold; .tc; }
+    .menu-list, .empty-list { .hf; .p(10); .bgc(ghostwhite);
       li { .flex; .items-center; .space-between; .fs(14, 21);
         .name-with-cnt {
           .menu-name {}
@@ -62,10 +63,15 @@ const TableThumb = styled(TableThumbComp)`
         .price {}
       }
     }
-    .total { .flex; .items-center; .space-between; .mt(10);
-      .label { .bold; }
-      .value { .bold; }
+
+    .empty-list{ .flex-center;
+      >span{ .fs(13); .o(0.5); }
     }
+  }
+
+  .total { .flex; .items-center; .space-between; .mt(10);
+    .label { .bold; }
+    .value { .bold; }
   }
 `;
 

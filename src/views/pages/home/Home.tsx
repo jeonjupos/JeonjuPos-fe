@@ -5,6 +5,7 @@ import JwButton from '@/views/components/common/button/JwButton';
 import useService from '@/hooks/useService';
 import {TableInfo} from '@/api/generated/SpaceApi';
 import SpaceTable from '@/views/components/home/SpaceTable';
+import TextInput from '@/views/components/common/input/TextInput';
 
 interface PropsType {
     className?: string;
@@ -12,12 +13,12 @@ interface PropsType {
 
 // noinspection LessResolvedByNameOnly
 const Root = styled(Layout)`
-  .rel; .pr(150);
-  >.menu-list{ .abs; .rt(0); .z(2); .flex; .flex-column; .row-gap(1); .wh(150, calc(100vh - 83px)); 
+  .container{ .rel; .pr(150); }
+  .system-menu-list{ .abs; .rt(0); .z(2); .flex; .flex-column; .row-gap(1); .wh(150, 100%); 
     ${JwButton} { .hf; .bgc(darkgray); }
   }
-  .table-cont{ 
-    ${SpaceTable} { .h(calc(100vh - 83px)); }
+  .table-cont{ .hf;
+    ${SpaceTable} { .hf; }
   }
 `;
 
@@ -37,7 +38,7 @@ const Home = ({className}: PropsType) => {
 
   return (
     <Root className={className}>
-      <div className="menu-list">
+      <div className="system-menu-list">
         <JwButton>주문 관리</JwButton>
         <JwButton>메뉴 관리</JwButton>
         <JwButton>정산 관리</JwButton>

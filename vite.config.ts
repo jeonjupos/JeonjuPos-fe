@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import VitePluginHtmlEnv from 'vite-plugin-html-env';
+import svgr from "vite-plugin-svgr";
 const envRecords = require('./env.cjs');
 import path, {join} from 'path';
 
@@ -24,6 +25,20 @@ export default defineConfig({
         ],
       },
     }),
+    svgr({
+      exportAsDefault: false,
+      svgrOptions: {
+        prettier: false,
+        svgo: true,
+        svgoConfig: {
+          plugins: [{
+            name: 'removeViewBox',
+            active: false,
+          }],
+        },
+        titleProp: true,
+      }
+    }),
     VitePluginHtmlEnv(),
 
   ],
@@ -35,7 +50,8 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@/': `${path.resolve(__dirname, 'src')}/`
+      '@/': `${path.resolve(__dirname, 'src')}/`,
+      '@imgs/': `${path.resolve(__dirname, 'src/assets/imgs')}/`
     },
   },
 });

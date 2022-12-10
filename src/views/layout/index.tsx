@@ -9,14 +9,14 @@ interface PropsType {
 
 // noinspection LessResolvedByNameOnly
 const Root = styled.div`
-
+  .container{ .h(calc(100vh - 83px)); }
 `;
 
 const Layout = ({className, children}: PropsType) => {
   return (
-    <Root>
+    <Root className={className}>
       <Header />
-      <div className={className}>
+      <div className="container">
         {children}
       </div>
     </Root>

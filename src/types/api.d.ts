@@ -23,6 +23,11 @@ export type ErrorResponse<T = ObjectLiteral> = {
   org: AxiosError<ApiError<T>>
 };
 
+export interface ApiResponseType {
+  res_code: string;
+  message: string;
+}
+
 export interface ApiHandlerConstructorParams {
   toast: (msg: string, options?: ToastOption) => void;
   cookie: CookieService;

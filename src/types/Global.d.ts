@@ -1,3 +1,5 @@
+import {BackHistoryType} from '@/providers/keepAlive/type';
+
 export {};
 
 declare global {

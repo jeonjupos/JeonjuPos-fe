@@ -63,24 +63,6 @@ export type Union<T> = T extends (infer E)[] ? E : T extends object ? keyof T : 
 
 /**
  * @example
- *   type USD = Brand<number, "USD">
- *   type EUR = Brand<number, "EUR">
- *
- *   const tax = 5 as USD;
- *   const usd = 10 as USD;
- *   const eur = 10 as EUR;
- *
- *   function gross(net: USD): USD {
- *     return (net + tax) as USD;
- *   }
- *
- *   gross(usd); // No compile error
- *   gross(eur); // Compile error (Type '"EUR"' is not assignable to type '"USD"'.)
- */
-export type Brand<T, U extends string> = T & { [key in U]: unique symbol };
-
-/**
- * @example
  *   type Props = {name: string; setName: (name: string) => void; someKeys?: string; someFn?: (...args: any) => any;};
  *   type Result = FunctionKeys<Props>; // "setName | someFn"
  */

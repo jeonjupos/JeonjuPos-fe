@@ -15,7 +15,10 @@ interface PropsType {
 const Root = styled(Layout)`
   .container{ .rel; .pr(150); }
   .system-menu-list{ .abs; .rt(0); .z(2); .flex; .flex-column; .row-gap(1); .wh(150, 100%); 
-    ${JwButton} { .hf; .bgc(darkgray); }
+    ${JwButton} { .hf; .bgc(darkgray); font-weight: 300; }
+    button{
+      color: red;
+    }
   }
   .table-cont{ .hf;
     ${SpaceTable} { .hf; }
@@ -39,7 +42,7 @@ const Home = ({className}: PropsType) => {
   return (
     <Root className={className}>
       <div className="system-menu-list">
-        <JwButton>주문 관리</JwButton>
+        <JwButton className="awdawd">주문 관리</JwButton>
         <JwButton>메뉴 관리</JwButton>
         <JwButton>정산 관리</JwButton>
         <JwButton>명부 관리</JwButton>

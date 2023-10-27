@@ -24,27 +24,50 @@ const WgButtonComp = ({ className, type, color, children, ripple, disabled, onCl
 };
 
 const JwButton = styled(WgButtonComp)`
-  .bold; .-a; .pointer; .t-s(1); transform-origin: center;
-  &:disabled { .o(0.5); cursor: not-allowed; }
-  &:active:not(:disabled){ .t-s(0.98); }
-  * { pointer-events: none; }
+border: 1px solid #000;
+font-weight: bold;
+cursor: pointer;
+transform: scale(1);
+transform-origin: center;
+  
+  &:disabled { 
+    opacity: 0.5; 
+    cursor: not-allowed; 
+  }
+  &:active:not(:disabled){ 
+    transform: scale(0.98); 
+  }
+  * {
+    pointer-events: none; 
+  }
 `;
 
 export const WhiteContainBtn = styled(JwButton)`
-  .c(#000); .bgc(#FFF); .-a(#FFF); .br(50);
+  color: #000;
+  background: #fff;
+  border: 1px solid #fff;
+  border-radius: 50px;
 `;
 
 export const WhiteBorderBtn = styled(JwButton)`
-  .c(#FFF); .bgc(transparent); .-a(#FFF); .br(50);
+  color: #FFF;
+  background: transparent;
+  border: 1px solid #FFF;
+  border-radius: 50px;
 `;
 
 export const BlueContainBtn = styled(JwButton)`
-  .c(#FFF); .bgc(#4465DC); .-a(#4465DC); .br(50);
+  color: #FFF;
+  background: #4465DC;
+  border: 1px solid #4465DC;
+  border-radius: 50px;
 `;
 
 export const GrayBorderBtn = styled(JwButton)`
-color: @indigoNatural[@150];
-  .c(@indigoNatural[@150]); .bgc(transparent); .-a(@indigoNatural[@80]); .br(inherit);
+  color: #69708A;
+  background: transparent;
+  border: 1px solid #BCBCC8;
+  border-radius: inherit;
 `;
 
 export default JwButton;

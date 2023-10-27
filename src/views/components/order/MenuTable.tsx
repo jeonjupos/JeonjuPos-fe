@@ -87,9 +87,17 @@ const MenuTableComp = ({className, spacePkey, orderList, onSelectMenu}: PropsTyp
 const MenuTable = styled(MenuTableComp)`
   .hf;
   .category-list{ .h(50); .mb(14);
-    ${JwButton}{ .min-w(100); .h(50); .mr(6); .px(12); .fs(14); .c(#eee); .bgc(#888); .br(4); 
+    /* ${JwButton}{ .min-w(100); .h(50); .mr(6); .px(12); .fs(14); .c(#eee); .bgc(#888); .br(4); 
+      min-width: 100px;
+      height: 50px;
+      margin-right: 6px;
+      padding: 0 12px;
+      font-size: 14px;
+      color: #eee;
+      background: #888;
+      border-radius: 4px;
       &.active{ .c(black); .-a(black, 3px); .bgc(gainsboro); }
-    }
+    } */
   }
   .menu-list{ .flex; flex-wrap: wrap; .calc-h(100%, 200); .col-gap(6px); .row-gap(6px);
     .menu-box{ .w(calc((100% - 18px) / 4)); .h(calc((100% - 30px) / 6)); .bgc(#f5f5f5); .br(4);
